@@ -31,6 +31,24 @@
 			gap: 1rem;
 			margin-top: 1rem;
 		}
+		.ccna-slide h2 {
+			font-size: 2rem;
+			font-weight: 700;
+			margin-bottom: 1rem;
+		}
+		.ccna-slide h3 {
+			font-size: 1.2rem;
+			font-weight: 600;
+			margin-top: 1.5rem;
+		}
+		.ccna-slide ul {
+			margin-left: 1rem;
+			list-style-type: disc;
+		}
+		.ccna-slide li {
+			margin: 0.5rem 0;
+			line-height: 1.6;
+		}
 	</style>
 </head>
 <body class="is-preload">
@@ -81,11 +99,21 @@
 						<h3>Flashcard Carousel</h3>
 						<div class="carousel">
 							<div class="carousel-track" id="carousel-track">
-								<div class="carousel-slide">OSI has 7 layers: Physical, Data Link, Network, Transport, Session, Presentation, Application</div>
-								<div class="carousel-slide">CIDR: /24 subnet = 255.255.255.0, 256 IPs, 254 usable</div>
-								<div class="carousel-slide">802.1Q is the trunking protocol tagging VLANs in Ethernet frames</div>
-								<div class="carousel-slide">OSPF uses cost metric based on bandwidth; EIGRP uses bandwidth and delay</div>
-								<div class="carousel-slide">ACLs filter traffic. Standard ACLs use source IP only. Extended ACLs can filter by protocol, source & destination IPs and ports.</div>
+								<div class="carousel-slide ccna-slide">
+									<h2>SDN Architecture</h2>
+									<h3>Architecture Layers (Conceptual Stack)</h3>
+									<ul>
+										<li><strong>Application Layer:</strong> Where intent and policy are defined (e.g., security rules, traffic priorities).</li>
+										<li><strong>Control Layer:</strong> Where decisions are made based on that intent (e.g., SDN controllers like APIC).</li>
+										<li><strong>Infrastructure Layer:</strong> Where packets are actually forwarded—your physical switches and routers.</li>
+									</ul>
+									<h3>Design Components (Network Implementation)</h3>
+									<ul>
+										<li><strong>Underlay:</strong> The physical network (switches, routers, IP links).</li>
+										<li><strong>Overlay:</strong> The virtual network (VXLAN, GRE tunnels) running on top of the underlay.</li>
+										<li><strong>Fabric:</strong> The automated system that coordinates overlay and underlay, enforcing control and policy.</li>
+									</ul>
+								</div>
 							</div>
 							<div class="carousel-controls">
 								<button onclick="moveSlide(-1)">Prev</button>
