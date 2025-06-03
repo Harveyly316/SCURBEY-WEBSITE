@@ -6,6 +6,32 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="assets/css/main.css" />
 	<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	<style>
+		.carousel {
+			overflow: hidden;
+			position: relative;
+			max-width: 100%;
+			margin: 2rem 0;
+		}
+		.carousel-track {
+			display: flex;
+			transition: transform 0.3s ease-in-out;
+		}
+		.carousel-slide {
+			flex: 0 0 100%;
+			padding: 2rem;
+			box-sizing: border-box;
+			background: #f5f5f5;
+			border-radius: 8px;
+			margin: 0 auto;
+		}
+		.carousel-controls {
+			display: flex;
+			justify-content: center;
+			gap: 1rem;
+			margin-top: 1rem;
+		}
+	</style>
 </head>
 <body class="is-preload">
 
@@ -36,7 +62,7 @@
 			<article id="main">
 				<header>
 					<h2>CCNA Prep</h2>
-					<p>Condensed notes, key topics, and flashcard-style study references</p>
+					<p>Condensed notes, key topics, and flashcard-style review</p>
 				</header>
 				<section class="wrapper style5">
 					<div class="inner">
@@ -52,26 +78,20 @@
 						</ul>
 
 						<hr />
-						<h3>My Notes Input</h3>
-						<form method="post" action="#">
-							<div class="row gtr-uniform">
-								<div class="col-12">
-									<textarea name="ccna-notes" id="ccna-notes" placeholder="Paste or write your notes here..." rows="10"></textarea>
-								</div>
-								<div class="col-12">
-									<ul class="actions">
-										<li><input type="submit" value="Save Note (Non-functional placeholder)" class="primary" /></li>
-									</ul>
-								</div>
+						<h3>Flashcard Carousel</h3>
+						<div class="carousel">
+							<div class="carousel-track" id="carousel-track">
+								<div class="carousel-slide">OSI has 7 layers: Physical, Data Link, Network, Transport, Session, Presentation, Application</div>
+								<div class="carousel-slide">CIDR: /24 subnet = 255.255.255.0, 256 IPs, 254 usable</div>
+								<div class="carousel-slide">802.1Q is the trunking protocol tagging VLANs in Ethernet frames</div>
+								<div class="carousel-slide">OSPF uses cost metric based on bandwidth; EIGRP uses bandwidth and delay</div>
+								<div class="carousel-slide">ACLs filter traffic. Standard ACLs use source IP only. Extended ACLs can filter by protocol, source & destination IPs and ports.</div>
 							</div>
-						</form>
-
-						<hr />
-						<h3>Flashcard Deck Access</h3>
-						<p>If you're currently using a PowerPoint deck for flashcards, consider uploading it to Google Slides and linking it here for easier access on the go.</p>
-						<ul class="actions">
-							<li><a href="https://docs.google.com" class="button primary">Open Slide Deck</a></li>
-						</ul>
+							<div class="carousel-controls">
+								<button onclick="moveSlide(-1)">Prev</button>
+								<button onclick="moveSlide(1)">Next</button>
+							</div>
+						</div>
 
 					</div>
 				</section>
@@ -101,6 +121,18 @@
 <script src="assets/js/breakpoints.min.js"></script>
 <script src="assets/js/util.js"></script>
 <script src="assets/js/main.js"></script>
+<script>
+	let index = 0;
+	const track = document.getElementById('carousel-track');
+	const slides = document.querySelectorAll('.carousel-slide');
+
+	function moveSlide(step) {
+		index += step;
+		if (index < 0) index = slides.length - 1;
+		if (index >= slides.length) index = 0;
+		track.style.transform = `translateX(-${index * 100}%)`;
+	}
+</script>
 
 </body>
 </html>
