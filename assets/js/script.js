@@ -1,125 +1,151 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const navLinks = document.querySelectorAll('.nav-link');
-    const sections = document.querySelectorAll('.terminal-section');
-    const typingElements = document.querySelectorAll('.typing-effect');
-    let typingDelay = 0;
+    const navItems = document.querySelectorAll('.nav-item');
+    const sections = document.querySelectorAll('.section');
+    const buttons = document.querySelectorAll('[data-section]');
+    const downloadResumeBtn = document.getElementById('download-resume-btn'); // New: Get download button
 
-    // --- Navigation Logic ---
-    navLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
+    // Function to show section
+    function showSection(sectionId) {
+        // Hide all sections
+        sections.forEach(section => section.classList.remove('active'));
+
+        // Show target section
+        const targetSection = document.getElementById(sectionId);
+        if (targetSection) {
+            targetSection.classList.add('active');
+            window.scrollTo(0, 0); // Scroll to top
+        }
+
+        // Update nav items
+        navItems.forEach(item => item.classList.remove('active'));
+        const activeNav = document.querySelector(`[data-section="${sectionId}"]`);
+        if (activeNav) activeNav.classList.add('active');
+    }
+
+    // Navigation click handlers
+    navItems.forEach(item => {
+        item.addEventListener('click', (e) => {
             e.preventDefault();
-            const targetId = e.target.getAttribute('data-target');
-
-            // Remove active from all links and sections
-            navLinks.forEach(nav => nav.classList.remove('active'));
-            sections.forEach(sec => sec.classList.remove('active'));
-
-            // Add active to clicked link
-            e.target.classList.add('active');
-
-            // Show the target section
-            document.getElementById(targetId).classList.add('active');
-
-            // Scroll to the active section (optional, can be smooth)
-            document.getElementById(targetId).scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
+            const sectionId = item.getAttribute('data-section');
+            showSection(sectionId);
         });
     });
 
-    // --- Typing Effect Logic ---
-    const typeWriter = (element, text, delay) => {
-        return new Promise(resolve => {
-            let i = 0;
-            element.classList.add('active-cursor'); // Show cursor
-            const interval = setInterval(() => {
-                if (i < text.length) {
-                    element.textContent += text.charAt(i);
-                    i++;
-                } else {
-                    clearInterval(interval);
-                    element.classList.remove('active-cursor'); // Hide cursor
-                    resolve();
-                }
-            }, delay);
+    // Button click handlers (for internal navigation)
+    buttons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            if (button.tagName === 'BUTTON' && button.hasAttribute('data-section')) {
+                e.preventDefault();
+                const sectionId = button.getAttribute('data-section');
+                showSection(sectionId);
+            }
         });
-    };
+    });
 
-    const startTypingEffects = async () => {
-        for (const el of typingElements) {
-            const text = el.getAttribute('data-text');
-            const delay = parseInt(el.getAttribute('data-delay') || 0); // Delay before starting this line
-            const charDelay = 70; // Speed of typing each character
-
-            // Clear initial text (if any) and wait for the line's specific delay
-            el.textContent = '';
-            await new Promise(resolve => setTimeout(resolve, delay));
-
-            // Start typing
-            await typeWriter(el, text, charDelay);
-
-            // Add a small pause after each line is fully typed
-            await new Promise(resolve => setTimeout(resolve, 500));
-        }
-        // After all typing effects are done, activate the last cursor
-        const lastTypingElement = typingElements[typingElements.length - 1];
-        if (lastTypingElement) {
-            lastTypingElement.classList.add('active-cursor');
-            lastTypingElement.classList.remove('blink'); // Ensure it stays visible
-        }
-    };
-
-    // Only start typing effect on the hero section when it's first loaded
-    if (document.getElementById('hero').classList.contains('active')) {
-        startTypingEffects();
+    // New: Download Resume functionality
+    if (downloadResumeBtn) {
+        downloadResumeBtn.addEventListener('click', () => {
+            // This URL needs to point to where the PDF is hosted.
+            // On GitHub Pages, it would typically be in your repo's root or a subfolder.
+            // Assuming it's in the root of your published GitHub Pages site:
+            const resumeUrl = 'Harvey Ly Resume.docx.pdf'; // Adjust this path if the PDF is in 'assets/' or another folder
+            const link = document.createElement('a');
+            link.href = resumeUrl;
+            link.download = 'Harvey_Ly_Resume.pdf'; // Name the downloaded file
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        });
     }
 
-
-    // --- Placeholder for Contact Form Submission ---
+    // Contact form submission
     const contactForm = document.getElementById('contact-form');
-    const formStatus = document.getElementById('form-status');
-
     if (contactForm) {
         contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            formStatus.textContent = 'Sending message...';
-            // In a real scenario, you'd send this data to a backend or a service like Formspree.io
-            // For example:
-            /*
-            const formData = new FormData(contactForm);
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            const formStatus = document.getElementById('form-status');
+
+            formStatus.textContent = 'Sending...';
+
+            // IMPORTANT: Replace 'https://formspree.io/f/YOUR_FORM_ID' with your actual Formspree endpoint.
+            // You'll need to create an account on Formspree.io and set up a form to get this URL.
+            const formspreeEndpoint = 'https://formspree.io/f/YOUR_FORM_ID'; 
+
+            const formData = new FormData();
+            formData.append('name', name);
+            formData.append('email', email);
+            formData.append('subject', subject);
+            formData.append('message', message);
+
             try {
-                const response = await fetch('YOUR_FORM_SUBMISSION_ENDPOINT', {
+                const response = await fetch(formspreeEndpoint, {
                     method: 'POST',
                     body: formData,
                     headers: {
                         'Accept': 'application/json'
                     }
                 });
+
                 if (response.ok) {
-                    formStatus.textContent = 'Message sent successfully! Thank you.';
+                    formStatus.textContent = '✓ Message sent successfully!';
+                    formStatus.style.color = '#10a37f';
                     contactForm.reset();
+                    setTimeout(() => {
+                        formStatus.textContent = '';
+                    }, 5000);
                 } else {
                     const data = await response.json();
-                    if (data.errors) {
-                        formStatus.textContent = data.errors.map(error => error.message).join(', ');
+                    if (data && data.errors) {
+                        formStatus.textContent = `✗ Error: ${data.errors.map(err => err.message).join(', ')}`;
                     } else {
-                        formStatus.textContent = 'Oops! There was a problem sending your message.';
+                        formStatus.textContent = '✗ Failed to send message. Please try again.';
                     }
+                    formStatus.style.color = '#e94560';
                 }
             } catch (error) {
-                formStatus.textContent = 'Network error. Please try again later.';
+                formStatus.textContent = '✗ Error sending message. Please try again later.';
+                formStatus.style.color = '#e94560';
             }
-            */
-            // Simulate a delay for the terminal feel
-            await new Promise(resolve => setTimeout(resolve, 1500));
-            formStatus.textContent = '>>> Message received. Thank you for connecting. <<<';
-            contactForm.reset();
         });
     }
 
-    // --- Initial Active State ---
-    // Ensure the first section and nav link are active on load
-    document.querySelector('.nav-link[data-target="hero"]').classList.add('active');
-    document.getElementById('hero').classList.add('active');
+    // Smooth scroll for internal links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const href = this.getAttribute('href');
+            if (href !== '#') {
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            }
+        });
+    });
+
+    // Active nav indicator on scroll
+    window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            // Adjust this offset based on your navbar height to make sure the active state changes correctly
+            if (pageYOffset >= sectionTop - 150) { 
+                current = section.getAttribute('id');
+            }
+        });
+
+        navItems.forEach(item => {
+            item.classList.remove('active');
+            if (item.getAttribute('data-section') === current) {
+                item.classList.add('active');
+            }
+        });
+    });
 });
