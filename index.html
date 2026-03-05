@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name - Cyber Portfolio</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="terminal-header">
+        <div class="terminal-bar">
+            <span class="terminal-button close"></span>
+            <span class="terminal-button minimize"></span>
+            <span class="terminal-button maximize"></span>
+            <span class="terminal-title">user@yourname.com:/home/guest$</span>
+        </div>
+        <nav class="main-nav">
+            <a href="#hero" class="nav-link active" data-target="hero">_home</a>
+            <a href="#about" class="nav-link" data-target="about">_about</a>
+            <a href="#skills" class="nav-link" data-target="skills">_skills</a>
+            <a href="#projects" class="nav-link" data-target="projects">_projects</a>
+            <a href="#contact" class="nav-link" data-target="contact">_contact</a>
+        </nav>
+    </header>
+
+    <main class="terminal-window">
+        <section id="hero" class="terminal-section active">
+            <div class="section-content">
+                <p class="line typing-effect" data-text="Connecting to [your-name].systems..."></p>
+                <p class="line typing-effect" data-delay="2000" data-text="Authentication successful. Welcome, user."></p>
+                <p class="line typing-effect blink" data-delay="4000" data-text="root@yourname:~$ "></p>
+                <h1 class="hero-title">Hello, I'm <span class="highlight">[Your Name]</span>.</h1>
+                <p class="hero-subtitle">Penetration Tester | Security Researcher | Developer</p>
+                <div class="social-links">
+                    <a href="#" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="terminal-section">
+            <div class="section-content">
+                <h2>_about</h2>
+                <p>Hello, world! I'm [Your Name], a passionate cybersecurity professional with a focus on offensive security and secure software development. I enjoy exploring vulnerabilities, building robust systems, and contributing to the open-source community. My journey in tech started with a fascination for how things work, and it quickly evolved into a mission to secure them.</p>
+                <p>When I'm not dissecting malware or fuzzing applications, you can find me diving into new programming languages, participating in CTFs, or contributing to various security projects.</p>
+            </div>
+        </section>
+
+        <section id="skills" class="terminal-section">
+            <div class="section-content">
+                <h2>_skills</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3><i class="fas fa-terminal highlight"></i> Offensive Security</h3>
+                        <ul>
+                            <li>Penetration Testing</li>
+                            <li>Vulnerability Research</li>
+                            <li>Web Application Hacking</li>
+                            <li>Network Security</li>
+                            <li>Malware Analysis</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h3><i class="fas fa-code highlight"></i> Development</h3>
+                        <ul>
+                            <li>Python, Go, C/C++</li>
+                            <li>Bash Scripting</li>
+                            <li>API Development</li>
+                            <li>Reverse Engineering</li>
+                            <li>Containerization (Docker)</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h3><i class="fas fa-shield-alt highlight"></i> Defensive Security</h3>
+                        <ul>
+                            <li>Security Architecture</li>
+                            <li>Incident Response</li>
+                            <li>Threat Modeling</li>
+                            <li>Security Audits</li>
+                            <li>Cloud Security (AWS/Azure)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="terminal-section">
+            <div class="section-content">
+                <h2>_projects</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <h3><a href="#" target="_blank">Project A: Custom Exploit Dev</a></h3>
+                        <p>Developed a custom exploit for a buffer overflow vulnerability in a legacy application, demonstrating RCE. <span class="highlight">[Python, C, Metasploit]</span></p>
+                    </div>
+                    <div class="project-card">
+                        <h3><a href="#" target="_blank">Project B: CTF Writeups</a></h3>
+                        <p>A collection of detailed writeups for various Capture The Flag challenges, covering web, crypto, and binary exploitation. <span class="highlight">[CTF, Markdown]</span></p>
+                    </div>
+                    <div class="project-card">
+                        <h3><a href="#" target="_blank">Project C: Secure API Gateway</a></h3>
+                        <p>Designed and implemented a secure API gateway using Go, incorporating authentication, authorization, and rate-limiting. <span class="highlight">[Go, Docker, NGINX]</span></p>
+                    </div>
+                    <!-- Add more project cards as needed -->
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="terminal-section">
+            <div class="section-content">
+                <h2>_contact</h2>
+                <p>Feel free to reach out for collaborations, discussions, or just to say hello!</p>
+                <form id="contact-form">
+                    <div class="form-group">
+                        <label for="name">user@yourname.com:~$ enter your name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">user@yourname.com:~$ enter your email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">user@yourname.com:~$ type your message</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="terminal-button-submit">Send Message</button>
+                    <p id="form-status"></p>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <script src="assets/js/script.js"></script>
+</body>
+</html>
