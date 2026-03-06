@@ -158,9 +158,7 @@ section h2 {
     border-radius: 8px;
     overflow: hidden;
     margin-top: 20px;
-    min-height: 800px; /* Minimum height for the iframe container */
-    max-height: 1200px; /* Maximum height for the iframe container */
-    resize: vertical; /* Allow user to resize vertically */
+    height: 900px;
     display: flex;
 }
 
