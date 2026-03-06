@@ -11,10 +11,56 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-	
+		<style>
+			/* Custom CSS to style the iframe for better integration */
+			#resume-pdf {
+				width: 100%; /* Make the iframe take full width of its container */
+				height: 100vh; /* Make the iframe take full viewport height */
+				border: none; /* Remove default iframe border */
+			}
+
+			/* Adjust content area to give more space to the PDF */
+			#content {
+				width: 100%; /* Allow content to use full width */
+				max-width: 100%; /* Ensure it doesn't get limited by a max-width */
+				padding: 0; /* Remove padding from #content */
+				margin: 0; /* Remove margin from #content */
+			}
+
+			#content .inner {
+				width: 100%;
+				max-width: 100%; /* Allow inner content to use full width */
+				padding: 0; /* Remove inner padding */
+				margin: 0; /* Remove inner margin */
+			}
+
+			article#resume {
+				width: 100%;
+				max-width: 100%; /* Ensure the article takes full width */
+				padding: 0; /* Remove padding from article */
+				margin: 0; /* Remove margin from article */
+			}
+
+			/* Adjust the heading and paragraph for better spacing */
+			article#resume h2.major,
+			article#resume p {
+				padding: 2em 3em; /* Add back some padding for text content */
+				max-width: 900px; /* Constrain text width for readability */
+				margin: 0 auto; /* Center text content */
+			}
+			article#resume ul.actions {
+				padding: 0 3em 2em; /* Add padding for the button */
+				max-width: 900px; /* Constrain button area width */
+				margin: 0 auto; /* Center button area */
+			}
+		</style>
 	</head>
-	<body>
-		
+	<body class="is-preload">
+		<div id="wrapper">
+			<div id="content">
+				<div class="inner">
+
+					<!-- Resume Section with PDF Embed -->
 					<article id="resume" class="active">
 						<h2 class="major">My Resume</h2>
 						<p>You can view my resume directly below, or download it using the button.</p>
@@ -23,12 +69,28 @@
 							<p>It looks like your browser doesn't support PDFs. You can download the resume directly below.</p>
 						</iframe>
 
-						<ul class="actions" style="margin-top: 2em;">
+						<ul class="actions">
 							<li><a href="Harvey Ly Resume.docx.pdf" class="button icon solid fa-download" download>Download Resume</a></li>
 						</ul>
 					</article>
 
-			
+				</div>
+			</div>
+
+			<!-- Footer -->
+			<footer id="footer">
+				<div class="inner">
+					<ul class="icons">
+						<!-- Add your social media icons here if desired, similar to index.html -->
+					</ul>
+					<ul class="copyright">
+						<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</div>
+			</footer>
+
+		</div>
+
 		<!-- Scripts -->
 		<script src="assets/js/jquery.min.js"></script>
 		<script src="assets/js/browser.min.js"></script>
