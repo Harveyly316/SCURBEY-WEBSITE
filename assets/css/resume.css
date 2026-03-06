@@ -1,0 +1,20 @@
+/* Resume Page Specific Styles */
+
+#resume-pdf {
+	width: 100%;
+	height: 85vh;
+	border: none;
+	display: block;
+	margin: 2em 0;
+}
+
+article#resume h2.major,
+article#resume > p {
+	padding: 0 2em;
+	text-align: center;
+}
+
+article#resume ul.actions {
+	padding: 0 2em;
+	text-align: center;
+}
