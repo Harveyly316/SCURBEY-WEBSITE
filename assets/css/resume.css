@@ -1,0 +1,217 @@
+
+/* General Body and Container Styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f7f6;
+    color: #333;
+    line-height: 1.6;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.container {
+    background-color: #fff;
+    padding: 40px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    max-width: 900px;
+    width: 100%;
+}
+
+/* Header Styles */
+.header {
+    text-align: center;
+    margin-bottom: 40px;
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 20px;
+}
+
+.header h1 {
+    color: #2c3e50;
+    margin-bottom: 10px;
+    font-size: 2.8em;
+    font-weight: 700;
+}
+
+.header p {
+    margin: 5px 0;
+    font-size: 1.1em;
+    color: #555;
+}
+
+.header a {
+    color: #3498db;
+    text-decoration: none;
+    font-weight: 400;
+}
+
+.header a:hover {
+    text-decoration: underline;
+}
+
+.header .clearance {
+    font-weight: 700;
+    color: #e74c3c;
+    margin-top: 15px;
+    padding: 5px 10px;
+    background-color: #fce4e4;
+    border-radius: 4px;
+    display: inline-block;
+}
+
+/* Section Styles */
+section {
+    margin-bottom: 30px;
+}
+
+section h2 {
+    color: #2c3e50;
+    font-size: 1.8em;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Item Styles (for Education and Experience) */
+.item {
+    margin-bottom: 25px;
+}
+
+.item h3 {
+    color: #34495e;
+    font-size: 1.4em;
+    margin-bottom: 5px;
+}
+
+.item p {
+    margin: 0 0 10px 0;
+    color: #666;
+}
+
+.item ul {
+    list-style-type: disc;
+    margin-left: 25px;
+    padding: 0;
+}
+
+.item ul li {
+    margin-bottom: 8px;
+    color: #444;
+}
+
+/* Certifications List */
+.certifications ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.certifications ul li {
+    background-color: #ecf0f1;
+    padding: 8px 15px;
+    border-radius: 5px;
+    color: #34495e;
+    font-weight: 600;
+    font-size: 0.95em;
+}
+
+/* PDF Viewer Section */
+.pdf-viewer {
+    margin-top: 50px;
+    text-align: center;
+}
+
+.pdf-viewer p {
+    margin-bottom: 20px;
+    font-size: 1.1em;
+}
+
+.actions {
+    margin-bottom: 30px;
+}
+
+.button {
+    display: inline-block;
+    background-color: #3498db;
+    color: #fff;
+    padding: 12px 25px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1.1em;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #2980b9;
+}
+
+.iframe-container {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-top: 20px;
+    height: 900px;
+    display: flex;
+}
+
+.iframe-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    body {
+        padding: 15px;
+    }
+
+    .container {
+        padding: 25px;
+    }
+
+    .header h1 {
+        font-size: 2em;
+    }
+
+    section h2 {
+        font-size: 1.5em;
+    }
+
+    .item h3 {
+        font-size: 1.2em;
+    }
+
+    .button {
+        padding: 10px 20px;
+        font-size: 1em;
+    }
+    
+    .iframe-container {
+        min-height: 600px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header h1 {
+        font-size: 1.8em;
+    }
+    .header p, .header a {
+        font-size: 0.9em;
+    }
+    .certifications ul {
+        flex-direction: column;
+        align-items: center;
+    }
+    .certifications ul li {
+        width: fit-content;
+    }
+}
